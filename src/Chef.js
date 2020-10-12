@@ -1,8 +1,7 @@
 class Chef {
-  constructor(name, restaurant, menu) {
+  constructor(name, restaurant) {
     this.name = name;
     this.restaurant = restaurant;
-    this.menu = [];
   };
   greetCustomer(customerName, morning) {
     if (morning === true) {
@@ -11,19 +10,14 @@ class Chef {
       return `Hello, ${customerName}!`;
     };
   };
-  addMenuItem(foodItem) {
-    this.menu.push(foodItem);
-  }
   checkForFood(foodItem) {
-    return `Yes, we're serving ${foodItem.name} today!`;
+    for (var i = 0; i < this.restaurant.menus[foodItem.type].length; i++) {
+      if (foodItem === this.restaurant.menus[foodItem.type][i]) {
+        return `Yes, we're serving ${foodItem.name} today!`;
+      }
+    };
+    return `Sorry, we aren't serving ${foodItem.name} today.`;
   };
-  // checkForFood(requestedItem) {
-  //   if (requestedItem === this.menu[foodItem.name]) {
-  //     return `Yes, we're serving ${this.menu[foodItem.name]} today!`;
-  //   } else {
-  //     return `Sorry, we aren't serving ${this.menu[foodItem.name]} today.`;
-  //   };
-  // };
 };
 
 module.exports = Chef;
